@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic metadata for document setup -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tip Calculator App</title>
+
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="./dist/styles/style.css" />
+
+    <!-- Link to external JavaScript file with defer to load after DOM -->
+    <script src="./dist/script.js" defer></script>
+
+    <!-- Favicon for the browser tab -->
+    <link
+      rel="icon"
+      href="./dist/assets/favicon-32x32.png"
+      sizes="32x32"
+      type="png"
+    />
+
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts link -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="m-0 p-0 min-h-screen min-w-screen text-[11px] font-spaceMono bg-primary-cyan/25 flex flex-col items-center font-700 lg:justify-center"
+  >
+    <!-- Application Title -->
+    <div
+      class="w-full justify-center flex flex-col items-center p-10 font-700 text-3xl tracking-[.25em] text-neutral-very-dark-cyan"
+    >
+      <p>SPLI</p>
+      <p>TTER</p>
+    </div>
+
+    <!-- Main container for inputs and results -->
+    <div
+      class="container flex flex-col flex-grow bg-white rounded-t-2xl sm:w-[60%] md:w-[55%] lg:w-[75%] xl:w-[60%] lg:flex-row lg:items-stretch lg:rounded-2xl lg:drop-shadow-lg h-fit lg:flex-grow-0"
+    >
+      <!-- Input container: Includes bill, tip selection, and number of people -->
+      <div
+        class="flex flex-col p-6 font-700 text-neutral-very-dark-cyan gap-6 lg:w-1/2 lg:flex-1"
+      >
+        <!-- Bill input section -->
+        <div class="flex flex-col gap-1 text-lg">
+          <label for="bill">Bill</label>
+          <div class="relative flex items-center">
+            <!-- Input field for the bill amount -->
+            <input
+              min="0"
+              step="1"
+              class="no-arrows appearance-none w-full bg-neutral-very-light-grayish-cyan p-2 text-right text-formInputs text-neutral-very-dark-cyan rounded-lg border hover:border-primary-cyan"
+              type="number"
+              name="bill"
+              id="bill"
+              placeholder="0"
+            />
+            <!-- Dollar icon displayed inside the input field -->
+            <img
+              class="absolute left-3"
+              src="./dist/assets/icon-dollar.svg"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <!-- Tip percentage selection -->
+        <div class="flex flex-col gap-2 text-lg">
+          <p>Select Tip %</p>
+          <div
+            class="grid grid-cols-2 lg:grid-cols-3 gap-4 w-full my-3 text-center text-white relative"
+          >
+            <!-- Predefined tip percentage buttons -->
+            <button
+              id="tip5"
+              class="tip bg-neutral-very-dark-cyan p-2 text-xl rounded-[4px] hover:bg-neutral-light-grayish-cyan hover:text-neutral-very-dark-cyan"
+            >
+              5%
+            </button>
+            <button
+              id="tip10"
+              class="tip bg-neutral-very-dark-cyan p-2 text-xl rounded-[4px] hover:bg-neutral-light-grayish-cyan hover:text-neutral-very-dark-cyan"
+            >
+              10%
+            </button>
+            <button
+              id="tip15"
+              class="tip bg-neutral-very-dark-cyan p-2 text-xl rounded-[4px] hover:bg-neutral-light-grayish-cyan hover:text-neutral-very-dark-cyan"
+            >
+              15%
+            </button>
+            <button
+              id="tip25"
+              class="tip bg-neutral-very-dark-cyan p-2 text-xl rounded-[4px] hover:bg-neutral-light-grayish-cyan hover:text-neutral-very-dark-cyan"
+            >
+              25%
+            </button>
+            <button
+              id="tip50"
+              class="tip bg-neutral-very-dark-cyan p-2 text-xl rounded-[4px] hover:bg-neutral-light-grayish-cyan hover:text-neutral-very-dark-cyan"
+            >
+              50%
+            </button>
+            <!-- Custom tip percentage input -->
+            <input
+              min="0"
+              max="100"
+              step="1"
+              id="customTip"
+              type="number"
+              placeholder="Custom"
+              class="tip bg-neutral-very-light-grayish-cyan text-neutral-very-dark-cyan p-2 text-xl rounded-[4px] text-center appearance-none no-arrows border hover:border-primary-cyan"
+            />
+          </div>
+        </div>
+
+        <!-- Number of people input -->
+        <div class="flex flex-col gap-1 text-lg relative">
+          <label for="people">Number of People</label>
+          <!-- Error message if the input is invalid -->
+          <span
+            id="error"
+            class="absolute text-right w-full text-xs top-2 text-red-600 hidden"
+          ></span>
+          <div class="relative flex items-center">
+            <!-- Input field for the number of people -->
+            <input
+              min="0"
+              step="1"
+              class="no-arrows appearance-none w-full bg-neutral-very-light-grayish-cyan p-2 text-right text-formInputs text-neutral-very-dark-cyan rounded-lg border hover:border-primary-cyan"
+              type="number"
+              name="people"
+              id="people"
+              placeholder="0"
+            />
+            <!-- Person icon displayed inside the input field -->
+            <img
+              class="absolute left-3"
+              src="./dist/assets/icon-person.svg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Output container: Displays calculated results -->
+      <div
+        class="flex-grow bg-neutral-very-dark-cyan text-white p-6 m-6 flex flex-col gap-6 rounded-xl lg:flex-1 justify-between text-2xl"
+      >
+        <!-- Calculated amounts section -->
+        <div class="flex flex-col justify-between lg:gap-6">
+          <!-- Tip Amount per person -->
+          <div class="flex justify-between items-center">
+            <div>
+              <p>Tip Amount</p>
+              <p class="text-neutral-grayish-cyan">/ person</p>
+            </div>
+            <div
+              id="tipAmount"
+              class="text-3xl lg:text-5xl text-primary-cyan font-700"
+            >
+              $0.00
+            </div>
+          </div>
+
+          <!-- Total Amount per person -->
+          <div class="flex justify-between items-center">
+            <div>
+              <p>Total</p>
+              <p class="text-neutral-grayish-cyan">/ person</p>
+            </div>
+            <div
+              id="totalAmount"
+              class="text-3xl lg:text-5xl text-primary-cyan font-700"
+            >
+              $0.00
+            </div>
+          </div>
+        </div>
+        <!-- Reset button to clear the form -->
+        <button
+          onclick="resetForm(event);"
+          type="submit"
+          id="reset"
+          class="w-full bg-neutral-dark-grayish-cyan/50 p-3 rounded-lg text-neutral-dark-grayish-cyan tracking-wide font-700 text-base"
+        >
+          RESET
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
